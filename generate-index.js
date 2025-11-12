@@ -1,18 +1,20 @@
 import { readdirSync, readFileSync, writeFileSync } from "fs";
-import path from "path";
 
 const pensDir = "./pens";
-const outFile = "./index.html";
-
 const pens = [];
 
-for (const folder of readdirSync(pensDir)) {
-  const metaPath = path.join(pensDir, folder, "meta.json");
-  try {
-    const meta = JSON.parse(readFileSync(metaPath, "utf8"));
-    pens.push({ folder, ...meta });
-  } catch {
-    console.warn(`⚠️  Keine meta.json in ${folder}`);
+for (const file of readdirSync(pensDir)) {
+  if (file.endsWith(".json")) {
+    try {
+      const meta = JSON.parse(readFileSync(`${pensDir}/${file}`, "utf8"));
+      pens.push({
+        file,
+        title: meta.title || file.replace(".json", ""),
+        description: meta.description || "",
+      });
+    } catch (e) {
+      console.warn(`⚠️ Fehler beim Lesen von ${file}: ${e.message}`);
+    }
   }
 }
 
@@ -22,31 +24,39 @@ const html = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meine Codesammlung</title>
+  <title>Meine LiveCodes-Sammlung</title>
   <style>
-    body { font-family: sans-serif; margin: 2rem; background: #f7f7f7; }
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #f7f7f7; }
     h1 { text-align: center; }
-    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .pen { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
-    .pen img { max-width: 100%; border-radius: 8px; margin-bottom: .5rem; }
-    .tags { font-size: .9em; color: #555; }
-    a.btn { display: inline-block; margin-top: .5rem; color: white; background: #007acc; padding: .4rem .8rem; border-radius: 6px; text-decoration: none; }
-    a.btn:hover { background: #005f99; }
+    .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+    .pen { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,.1); display: flex; flex-direction: column; }
+    .pen h2 { margin-top: 0; font-size: 1.1rem; }
+    .pen p { color: #555; font-size: 0.9rem; margin-bottom: .5rem; }
+    iframe { width: 100%; height: 240px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: .5rem; }
+    .btn { display: inline-block; margin-top: .25rem; background: #007acc; color: white; padding: .4rem .8rem; border-radius: 6px; text-decoration: none; font-size: .9rem; }
+    .btn:hover { background: #005f99; }
+    .btn.secondary { background: #666; }
   </style>
 </head>
 <body>
-  <h1>Meine Code-Sammlung</h1>
+  <h1>Meine LiveCodes Export Pens</h1>
   <div class="grid">
     ${pens
 .map(
     (p) => `
         <div class="pen">
           <h2>${p.title}</h2>
-          ${p.preview ? `<img src="pens/${p.folder}/${p.preview}" alt="${p.title}">` : ""}
-          <p>${p.description || ""}</p>
-          <p class="tags">${(p.tags || []).join(", ")}</p>
-          <a class="btn" href="pens/${p.folder}/index.html" target="_blank">🔍 Vorschau</a>
-          <a class="btn" href="https://code.scheibitz.com/?url=https://github.com/scheibome/pens/${p.folder}/index.html" target="_blank">🚀 In LiveCodes öffnen</a>
+          <iframe
+            src="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}&embed=true&mode=result&readonly=true&tools=none"
+            loading="lazy"
+          ></iframe>
+          <p>${p.description}</p>
+          <div>
+            <a class="btn" href="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}" target="_blank">
+              🚀 Öffnen in LiveCodes
+            </a>
+            <a class="btn secondary" href="pens/${p.file}" target="_blank">📄 JSON anzeigen</a>
+          </div>
         </div>`
 )
 .join("\n")}
@@ -55,5 +65,5 @@ const html = `
 </html>
 `;
 
-writeFileSync(outFile, html);
-console.log(`✅ index.html mit ${pens.length} Pens erzeugt.`);
+writeFileSync("index.html", html);
+console.log(`✅ index.html mit ${pens.length} LiveCodes-Embeds erstellt.`);

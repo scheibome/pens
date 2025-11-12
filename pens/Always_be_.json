@@ -1,0 +1,65 @@
+{
+  "title": "Always be...",
+  "description": "You know the deal. These are the ABC of the web world!\n\nAlways Be Closing\nAlways Be Coding\nAlways Be Creating\n\n- css only\n\n\n\nForked from [BROWNERD](http://codepen.io/brownerd/)'s Pen [Always be...](http://codepen.io/brownerd/pen/VLMBOz/).",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [
+    ""
+  ],
+  "autoupdate": true,
+  "autosave": true,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": true,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "pug",
+    "content": "h1 always be\n  .message \n    .word1 closing\n    .word2 coding\n    .word3 creating"
+  },
+  "style": {
+    "language": "stylus",
+    "content": "@import url('https://fonts.googleapis.com/css?family=Pacifico')\n@import url('https://fonts.googleapis.com/css?family=Permanent+Marker')\n@import url('https://fonts.googleapis.com/css?family=Abril\\+Fatface')\n  \n*\n  box-sizing border-box\n  \nbody\n  background-image radial-gradient(#fff 25%, #bbb 75%)\n  display flex\n  align-items center\n  justify-content center\n  height 100vh\n  width 100vw\n  \nh1\n  color #333\n  font-family source sans pro\n  font-size 3rem\n  font-weight 100\n  line-height 1.5\n  text-transform uppercase\n  white-space nowrap\n  overflow hidden\n  position relative\n  width 1000px\n  \n.message\n  background-color #fc0\n  color #333\n  display block\n  font-weight 900\n  overflow hidden\n  position absolute\n  padding-left .5rem\n  top .2rem\n  left 320px\n  animation openclose 5s ease-in-out infinite\n  \n.word1\n  font-family Abril Fatface\n  \n.word2\n  font-family source code pro\n  \n.word3\n  font-family Permanent Marker\n    \n@keyframes openclose\n  // First word animation\n  0%\n    top .2rem\n    width 0\n  5%\n    width 0\n  15%\n    width 230px  \n  30%\n    top .2rem\n    width 230px\n    \n  // Second word animation \n  33%\n    top .2rem\n    width 0\n  38%\n    top -4.5rem\n    width 0\n  48%\n    width 240px  \n  62%\n    top -4.5rem\n    width 240px\n  \n  // Third word animation\n  66%\n    top -4.5rem\n    width 0\n    text-indent 0\n  71%\n    top -9rem\n    width 0\n    text-indent 5px\n  86%\n    width 285px  \n  98%\n    top -9rem\n    width 285px\n  99%\n    text-indent 5px\n    top -9rem\n    width 0\n  100%\n    text-indent 0\n    top 0\n    width 0\n\n\n "
+  },
+  "script": {
+    "language": "javascript",
+    "content": ""
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}

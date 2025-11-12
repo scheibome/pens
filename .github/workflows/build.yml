@@ -1,4 +1,5 @@
-name: Generate Index
+name: Build & Deploy LiveCodes Gallery
+
 on:
   push:
     branches: [ main ]
@@ -9,14 +10,18 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node generate-index.js
 
-      - name: Deploy to gh-pages branch
+      - name: Generate index.html
+        run: node generate-index.js
+
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
