@@ -1,0 +1,67 @@
+{
+  "title": "Material Design'ish Hover & Click Effect",
+  "description": "\nForked from [440design](http://codepen.io/440design/)'s Pen [Material Design'ish Hover & Click Effect](http://codepen.io/440design/pen/iEztk/).",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [
+    ""
+  ],
+  "autoupdate": true,
+  "autosave": true,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": true,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "script",
+  "markup": {
+    "language": "html",
+    "content": "<a class=\"ripplelink\" href=\"#\">Hover & Click me!</a>"
+  },
+  "style": {
+    "language": "css",
+    "content": "body{\n margin:0;\n padding:0;\n}\n\n.wrapper:after {\n\tcontent:\"\";\n\tdisplay:table;\n\tclear:both;\n}\n\n.ripplelink{\n  background:#ffffff;\n  display:block;\n  padding: 20px;\n  line-height:1.5em;\n  text-align:center;\n  color: #7f8c8d;\n  font-size: 3em;\n  text-decoration:none;\n  position:relative;\n  overflow:hidden;\n  -webkit-transition: all 0.2s ease;\n  -moz-transition: all 0.2s ease;\n  -o-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n  z-index:0;\n  border-bottom: 1px solid currentColor;\n}\n\n.ink {\n  display: block;\n  position: absolute;\n  background:rgba(157, 172, 173, 0.3);\n  border-radius: 100%;\n  -webkit-transform:scale(0);\n     -moz-transform:scale(0);\n       -o-transform:scale(0);\n          transform:scale(0);\n}\n\n.animate {\n\t-webkit-animation:ripple 0.65s linear;\n   -moz-animation:ripple 0.65s linear;\n    -ms-animation:ripple 0.65s linear;\n     -o-animation:ripple 0.65s linear;\n        animation:ripple 0.65s linear;\n}\n\n@-webkit-keyframes ripple {\n    100% {opacity: 0; -webkit-transform: scale(2.5);}\n}\n@-moz-keyframes ripple {\n    100% {opacity: 0; -moz-transform: scale(2.5);}\n}\n@-o-keyframes ripple {\n    100% {opacity: 0; -o-transform: scale(2.5);}\n}\n@keyframes ripple {\n    100% {opacity: 0; transform: scale(2.5);}\n}"
+  },
+  "script": {
+    "language": "javascript",
+    "content": "$(function() {\n\t'use strict';\n\tvar ink;\n\tvar d;\n\tvar x;\n\tvar y;\n\t$('.ripplelink').click(function(e) {\n\t\tif (0 === $(this).find('.ink').length ) {\n\t\t\t$(this).prepend('<span class=\"ink\"></span>');\n\t\t}\n\n\t\tink = $(this).find('.ink');\n\t\tink.removeClass('animate');\n\n\t\tif(!ink.height() && !ink.width()){\n\t\t\td = Math.max($(this).outerWidth(), $(this).outerHeight());\n\t\t\tink.css({height: d, width: d});\n\t\t}\n\n\t\tx = e.pageX - $(this).offset().left - ink.width() / 2;\n\t\ty = e.pageY - $(this).offset().top - ink.height() / 2;\n\n\t\tink.css({top: y + 'px', left: x + 'px'}).addClass('animate');\n\t});\n});"
+  },
+  "stylesheets": [],
+  "scripts": [
+    "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+  ],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}

@@ -1,69 +1,120 @@
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import path from "path";
 
 const pensDir = "./pens";
-const pens = [];
+const outDir = "./";
+const baseUrl = "https://pens.scheibitz.com";
+const perPage = 6;
 
+let pens = [];
 for (const file of readdirSync(pensDir)) {
   if (file.endsWith(".json")) {
     try {
-      const meta = JSON.parse(readFileSync(`${pensDir}/${file}`, "utf8"));
+      const full = path.join(pensDir, file);
+      const meta = JSON.parse(readFileSync(full, "utf8"));
+      const stats = statSync(full);
       pens.push({
         file,
-        title: meta.title || file.replace(".json", ""),
+        title: meta.title || path.basename(file, ".json"),
         description: meta.description || "",
+        mtime: stats.mtime.getTime(),
       });
-    } catch (e) {
-      console.warn(`⚠️ Fehler beim Lesen von ${file}: ${e.message}`);
+    } catch (err) {
+      console.warn("⚠️ Fehler bei", file, err.message);
     }
   }
 }
 
-const html = `
+// Sortierung (neueste zuerst)
+pens.sort((a, b) => b.mtime - a.mtime);
+const totalPages = Math.ceil(pens.length / perPage);
+const pages = [];
+
+for (let page = 1; page <= totalPages; page++) {
+  const start = (page - 1) * perPage;
+  const end = start + perPage;
+  const slice = pens.slice(start, end);
+
+  const html = `
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meine LiveCodes-Sammlung</title>
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; background: #f7f7f7; }
-    h1 { text-align: center; }
-    .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-    .pen { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,.1); display: flex; flex-direction: column; }
-    .pen h2 { margin-top: 0; font-size: 1.1rem; }
-    .pen p { color: #555; font-size: 0.9rem; margin-bottom: .5rem; }
-    iframe { width: 100%; height: 240px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: .5rem; }
-    .btn { display: inline-block; margin-top: .25rem; background: #007acc; color: white; padding: .4rem .8rem; border-radius: 6px; text-decoration: none; font-size: .9rem; }
-    .btn:hover { background: #005f99; }
-    .btn.secondary { background: #666; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meine LiveCodes – Seite ${page}</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 2rem; background: #f7f7f7; }
+  h1 { text-align: center; }
+  .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .pen { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,.1); display: flex; flex-direction: column; }
+  .pen h2 { margin-top: 0; font-size: 1.1rem; }
+  .pen p { color: #555; font-size: 0.9rem; margin-bottom: .5rem; }
+  iframe { width: 100%; height: 240px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: .5rem; }
+  .btn { display: inline-block; margin-top: .25rem; background: #007acc; color: white; padding: .4rem .8rem; border-radius: 6px; text-decoration: none; font-size: .9rem; }
+  .btn:hover { background: #005f99; }
+  .btn.secondary { background: #666; }
+  .pagination { text-align: center; margin-top: 2rem; }
+  .pagination a { margin: 0 .25rem; padding: .4rem .8rem; background: #007acc; color: #fff; text-decoration: none; border-radius: 6px; }
+  .pagination a.disabled { background: #aaa; pointer-events: none; }
+</style>
 </head>
 <body>
-  <h1>Meine LiveCodes Export Pens</h1>
-  <div class="grid">
-    ${pens
-.map(
-    (p) => `
-        <div class="pen">
-          <h2>${p.title}</h2>
-          <iframe
-            src="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}&embed=true&mode=result&readonly=true&tools=none"
-            loading="lazy"
-          ></iframe>
-          <p>${p.description}</p>
-          <div>
-            <a class="btn" href="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}" target="_blank">
-              🚀 Öffnen in LiveCodes
-            </a>
-            <a class="btn secondary" href="pens/${p.file}" target="_blank">📄 JSON anzeigen</a>
-          </div>
-        </div>`
-)
-.join("\n")}
-  </div>
+<h1>Meine LiveCodes Export Pens</h1>
+<div class="grid">
+${slice
+  .map(
+      (p) => `
+  <div class="pen">
+    <h2>${p.title}</h2>
+    <iframe src="https://code.scheibitz.com/?config=${baseUrl}/pens/${p.file}&embed=true&mode=result&readonly=true&tools=none" loading="lazy"></iframe>
+    <p>${p.description}</p>
+    <div>
+      <a class="btn" href="https://code.scheibitz.com/?config=${baseUrl}/pens/${p.file}" target="_blank">🚀 Öffnen in LiveCodes</a>
+      <a class="btn secondary" href="pens/${p.file}" target="_blank">📄 JSON anzeigen</a>
+    </div>
+  </div>`
+  )
+  .join("\n")}
+</div>
+
+<div class="pagination">
+  ${
+      page > 1
+          ? `<a href="${page === 2 ? "index.html" : "page" + (page - 1) + ".html"}">← Vorherige</a>`
+          : `<a class="disabled">← Vorherige</a>`
+  }
+  Seite ${page} von ${totalPages}
+  ${
+      page < totalPages
+          ? `<a href="page${page + 1}.html">Nächste →</a>`
+          : `<a class="disabled">Nächste →</a>`
+  }
+</div>
+
 </body>
 </html>
 `;
 
-writeFileSync("index.html", html);
-console.log(`✅ index.html mit ${pens.length} LiveCodes-Embeds erstellt.`);
+  const fileName = page === 1 ? "index.html" : `page${page}.html`;
+  writeFileSync(path.join(outDir, fileName), html);
+  pages.push(fileName);
+}
+
+// Sitemap erzeugen
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages
+.map(
+    (page) => `
+  <url>
+    <loc>${baseUrl}/${page}</loc>
+  </url>`
+)
+.join("\n")}
+</urlset>`;
+
+writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
+
+console.log(
+    `✅ ${totalPages} Seiten erzeugt (${pens.length} Pens, ${perPage} pro Seite) + sitemap.xml`
+);
