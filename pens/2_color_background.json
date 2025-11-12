@@ -1,0 +1,63 @@
+{
+  "title": "2 color background",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": true,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": true,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "pug",
+    "content": "<div class=\"content shadow\">\n  <h1>Title</h1>\n  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>\n  <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>\n  <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>\n</div>"
+  },
+  "style": {
+    "language": "scss",
+    "content": "@function makelongshadow($color, $length) {\n  $val: 0px 0px $color;\n  @for $i from 1 through $length {\n    $val: #{$val}, #{$i}px #{$i}px #{$color};\n  }\n  @return $val;\n}\n\n@mixin longshadow($color) {\n  box-shadow: makelongshadow($color, 2);\n  text-shadow: makelongshadow($color, 2);\n}\n\n$grey: #95a5a6;\n$red: #e74c3c;\n$clouds: #ecf0f1;\n\nbody {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  font-size: 18px;\n  font-family: sans-serif;\n  \n  // needs latest Compass, add '@import \"compass\"' to your scss\n  background-color: $grey; // Old browsers\n  background: linear-gradient(90deg, $red 50%, $grey 50%);\n}\n\n.content {\n  max-width: 1200px;\n  background-color: $clouds;\n  margin: 10px auto;\n  position: relative;\n  padding: 20px;\n  \n  &:before {\n    content: '';\n    background-image: url('https://placeholder.scheibitz.com/200x500/2980b9/FFFFFF');\n    height: 500px;\n    width: 200px;\n    position: absolute;\n    top: 0;\n    left: -210px;\n    display: block;\n  }\n}\n\n.shadow {\n  box-shadow: rgb(24, 32, 42) 1px 1px,\n    rgb(24, 32, 42) 2px 2px,\n    rgb(24, 32, 42) 3px 3px,\n    rgb(24, 32, 42) 4px 4px,\n    rgb(24, 32, 42) 5px 5px,\n    rgb(24, 32, 42) 6px 6px,\n    rgb(24, 32, 42) 7px 7px,\n    rgb(24, 32, 42) 8px 8px,\n    rgb(24, 32, 42) 9px 9px,\n    rgb(24, 32, 42) 10px 10px,\n    rgb(24, 32, 42) 11px 11px,\n    rgb(24, 32, 42) 12px 12px,\n    rgb(24, 32, 42) 13px 13px,\n    rgb(24, 32, 42) 14px 14px,\n    rgb(24, 32, 42) 15px 15px,\n    rgb(24, 32, 42) 16px 16px,\n    rgb(24, 32, 42) 17px 17px,\n    rgb(24, 32, 42) 18px 18px,\n    rgb(24, 32, 42) 19px 19px,\n    rgb(24, 32, 42) 20px 20px,\n    rgb(24, 32, 42) 21px 21px,\n    rgb(24, 32, 42) 22px 22px,\n    rgb(24, 32, 42) 23px 23px,\n    rgb(24, 32, 42) 24px 24px,\n    rgb(24, 32, 42) 25px 25px,\n    rgb(24, 32, 42) 26px 26px,\n    rgb(24, 32, 42) 27px 27px,\n    rgb(24, 32, 42) 28px 28px,\n    rgb(24, 32, 42) 29px 29px,\n    rgb(24, 32, 42) 30px 30px,\n    rgb(24, 32, 42) 31px 31px,\n    rgb(24, 32, 42) 32px 32px,\n    rgb(24, 32, 42) 33px 33px,\n    rgb(24, 32, 42) 34px 34px,\n    rgb(24, 32, 42) 35px 35px,\n    rgb(24, 32, 42) 36px 36px,\n    rgb(24, 32, 42) 37px 37px,\n    rgb(24, 32, 42) 38px 38px,\n    rgb(24, 32, 42) 39px 39px,\n    rgb(24, 32, 42) 40px 40px,\n    rgb(24, 32, 42) 41px 41px,\n    rgb(24, 32, 42) 42px 42px,\n    rgb(24, 32, 42) 43px 43px,\n    rgb(24, 32, 42) 44px 44px,\n    rgb(24, 32, 42) 45px 45px,\n    rgb(24, 32, 42) 46px 46px,\n    rgb(24, 32, 42) 47px 47px,\n    rgb(24, 32, 42) 48px 48px,\n    rgb(24, 32, 42) 49px 49px,\n    rgb(24, 32, 42) 50px 50px,\n    rgb(24, 32, 42) 51px 51px,\n    rgb(24, 32, 42) 52px 52px,\n    rgb(24, 32, 42) 53px 53px,\n    rgb(24, 32, 42) 54px 54px,\n    rgb(24, 32, 42) 55px 55px,\n    rgb(24, 32, 42) 56px 56px,\n    rgb(24, 32, 42) 57px 57px,\n    rgb(24, 32, 42) 58px 58px,\n    rgb(24, 32, 42) 59px 59px,\n    rgb(24, 32, 42) 60px 60px,\n    rgb(24, 32, 42) 61px 61px,\n    rgb(24, 32, 42) 62px 62px,\n    rgb(24, 32, 42) 63px 63px,\n    rgb(24, 32, 42) 64px 64px,\n    rgb(24, 32, 42) 65px 65px,\n    rgb(24, 32, 42) 66px 66px,\n    rgb(24, 32, 42) 67px 67px,\n    rgb(24, 32, 42) 68px 68px,\n    rgb(24, 32, 42) 69px 69px,\n    rgb(24, 32, 42) 70px 70px,\n    rgb(24, 32, 42) 71px 71px,\n    rgb(24, 32, 42) 72px 72px,\n    rgb(24, 32, 42) 73px 73px,\n    rgb(24, 32, 42) 74px 74px,\n    rgb(24, 32, 42) 75px 75px,\n    rgb(24, 32, 42) 76px 76px,\n    rgb(24, 32, 42) 77px 77px,\n    rgb(24, 32, 42) 78px 78px,\n    rgb(24, 32, 42) 79px 79px,\n    rgb(24, 32, 42) 80px 80px,\n    rgb(24, 32, 42) 81px 81px,\n    rgb(24, 32, 42) 82px 82px,\n    rgb(24, 32, 42) 83px 83px,\n    rgb(24, 32, 42) 84px 84px,\n    rgb(24, 32, 42) 85px 85px,\n    rgb(24, 32, 42) 86px 86px,\n    rgb(24, 32, 42) 87px 87px,\n    rgb(24, 32, 42) 88px 88px,\n    rgb(24, 32, 42) 89px 89px,\n    rgb(24, 32, 42) 90px 90px,\n    rgb(24, 32, 42) 91px 91px,\n    rgb(24, 32, 42) 92px 92px,\n    rgb(24, 32, 42) 93px 93px,\n    rgb(24, 32, 42) 94px 94px,\n    rgb(24, 32, 42) 95px 95px,\n    rgb(24, 32, 42) 96px 96px,\n    rgb(24, 32, 42) 97px 97px,\n    rgb(24, 32, 42) 98px 98px,\n    rgb(24, 32, 42) 99px 99px,\n    rgb(24, 32, 42) 100px 100px,\n    rgb(24, 32, 42) 101px 101px,\n    rgb(24, 32, 42) 102px 102px,\n    rgb(24, 32, 42) 103px 103px,\n    rgb(24, 32, 42) 104px 104px,\n    rgb(24, 32, 42) 105px 105px,\n    rgb(24, 32, 42) 106px 106px,\n    rgb(24, 32, 42) 107px 107px,\n    rgb(24, 32, 42) 108px 108px,\n    rgb(24, 32, 42) 109px 109px,\n    rgb(24, 32, 42) 110px 110px,\n    rgb(24, 32, 42) 111px 111px,\n    rgb(24, 32, 42) 112px 112px,\n    rgb(24, 32, 42) 113px 113px,\n    rgb(24, 32, 42) 114px 114px,\n    rgb(24, 32, 42) 115px 115px,\n    rgb(24, 32, 42) 116px 116px,\n    rgb(24, 32, 42) 117px 117px,\n    rgb(24, 32, 42) 118px 118px,\n    rgb(24, 32, 42) 119px 119px,\n    rgb(24, 32, 42) 120px 120px,\n    rgb(24, 32, 42) 121px 121px,\n    rgb(24, 32, 42) 122px 122px,\n    rgb(24, 32, 42) 123px 123px,\n    rgb(24, 32, 42) 124px 124px,\n    rgb(24, 32, 42) 125px 125px,\n    rgb(24, 32, 42) 126px 126px,\n    rgb(24, 32, 42) 127px 127px,\n    rgb(24, 32, 42) 128px 128px,\n    rgb(24, 32, 43) 129px 129px,\n    rgb(24, 33, 43) 130px 130px,\n    rgb(24, 33, 43) 131px 131px,\n    rgb(25, 33, 43) 132px 132px,\n    rgb(25, 33, 43) 133px 133px,\n    rgb(25, 33, 44) 134px 134px,\n    rgb(25, 33, 44) 135px 135px,\n    rgb(25, 34, 44) 136px 136px,\n    rgb(25, 34, 44) 137px 137px,\n    rgb(25, 34, 44) 138px 138px,\n    rgb(25, 34, 45) 139px 139px,\n    rgb(26, 34, 45) 140px 140px,\n    rgb(26, 34, 45) 141px 141px,\n    rgb(26, 35, 45) 142px 142px,\n    rgb(26, 35, 46) 143px 143px,\n    rgb(26, 35, 46) 144px 144px,\n    rgb(26, 35, 46) 145px 145px,\n    rgb(26, 35, 46) 146px 146px,\n    rgb(27, 35, 46) 147px 147px,\n    rgb(27, 36, 47) 148px 148px,\n    rgb(27, 36, 47) 149px 149px,\n    rgb(27, 36, 47) 150px 150px,\n    rgb(27, 36, 47) 151px 151px,\n    rgb(27, 36, 47) 152px 152px,\n    rgb(27, 36, 48) 153px 153px,\n    rgb(27, 37, 48) 154px 154px,\n    rgb(28, 37, 48) 155px 155px,\n    rgb(28, 37, 48) 156px 156px,\n    rgb(28, 37, 48) 157px 157px,\n    rgb(28, 37, 49) 158px 158px,\n    rgb(28, 37, 49) 159px 159px,\n    rgb(28, 38, 49) 160px 160px,\n    rgb(28, 38, 49) 161px 161px,\n    rgb(29, 38, 50) 162px 162px,\n    rgb(29, 38, 50) 163px 163px,\n    rgb(29, 38, 50) 164px 164px,\n    rgb(29, 39, 50) 165px 165px,\n    rgb(29, 39, 50) 166px 166px,\n    rgb(29, 39, 51) 167px 167px,\n    rgb(29, 39, 51) 168px 168px,\n    rgb(29, 39, 51) 169px 169px,\n    rgb(30, 39, 51) 170px 170px,\n    rgb(30, 40, 51) 171px 171px,\n    rgb(30, 40, 52) 172px 172px,\n    rgb(30, 40, 52) 173px 173px,\n    rgb(30, 40, 52) 174px 174px,\n    rgb(30, 40, 52) 175px 175px,\n    rgb(30, 40, 52) 176px 176px,\n    rgb(30, 41, 53) 177px 177px,\n    rgb(31, 41, 53) 178px 178px,\n    rgb(31, 41, 53) 179px 179px,\n    rgb(31, 41, 53) 180px 180px,\n    rgb(31, 41, 54) 181px 181px,\n    rgb(31, 41, 54) 182px 182px,\n    rgb(31, 42, 54) 183px 183px,\n    rgb(31, 42, 54) 184px 184px,\n    rgb(32, 42, 54) 185px 185px,\n    rgb(32, 42, 55) 186px 186px,\n    rgb(32, 42, 55) 187px 187px,\n    rgb(32, 42, 55) 188px 188px,\n    rgb(32, 43, 55) 189px 189px,\n    rgb(32, 43, 55) 190px 190px,\n    rgb(32, 43, 56) 191px 191px,\n    rgb(32, 43, 56) 192px 192px,\n    rgb(33, 43, 56) 193px 193px,\n    rgb(33, 43, 56) 194px 194px,\n    rgb(33, 44, 56) 195px 195px,\n    rgb(33, 44, 57) 196px 196px,\n    rgb(33, 44, 57) 197px 197px,\n    rgb(33, 44, 57) 198px 198px,\n    rgb(33, 44, 57) 199px 199px,\n    rgb(34, 45, 58) 200px 200px;\n}"
+  },
+  "script": {
+    "language": "javascript",
+    "content": ""
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}
