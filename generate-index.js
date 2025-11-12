@@ -13,7 +13,7 @@ for (const file of readdirSync(pensDir)) {
         description: meta.description || "",
       });
     } catch (e) {
-      console.warn(`⚠️  Fehler beim Lesen von ${file}: ${e.message}`);
+      console.warn(`⚠️ Fehler beim Lesen von ${file}: ${e.message}`);
     }
   }
 }
@@ -45,7 +45,7 @@ const html = `
         <div class="pen">
           <h2>${p.title}</h2>
           <p>${p.description}</p>
-          <a class="btn" href="https://code.scheibitz.com/?url=https://github.com/scheibome/pens/${p.file}" target="_blank">
+          <a class="btn" href="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}" target="_blank">
             🚀 Öffnen in LiveCodes
           </a>
           <a class="btn" href="pens/${p.file}" target="_blank">📄 JSON anzeigen</a>
