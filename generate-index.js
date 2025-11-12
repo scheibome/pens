@@ -1,0 +1,24 @@
+name: Generate Index
+on:
+    push:
+        branches: [ main ]
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+steps:
+    - uses: actions/checkout@v4
+- uses: actions/setup-node@v4
+with:
+node-version: 20
+- run: node generate-index.js
+
+- name: Deploy to gh-pages branch
+uses: peaceiris/actions-gh-pages@v3
+with:
+github_token: ${{ secrets.GITHUB_TOKEN }}
+publish_branch: gh-pages
+publish_dir: ./
