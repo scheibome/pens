@@ -47,7 +47,7 @@ const html = `
         <div class="pen">
           <h2>${p.title}</h2>
           <iframe
-            src="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}&embed=1"
+            src="https://code.scheibitz.com/?config=https://pens.scheibitz.com/pens/${p.file}&embed=true&mode=result&readonly=true&tools=none"
             loading="lazy"
           ></iframe>
           <p>${p.description}</p>
