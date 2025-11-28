@@ -4,7 +4,7 @@ import path from "path";
 const pensDir = "./pens";
 const outDir = "./";
 const baseUrl = "https://pens.scheibitz.com";
-const perPage = 6;
+const perPage = 10;
 
 let pens = [];
 for (const file of readdirSync(pensDir)) {
