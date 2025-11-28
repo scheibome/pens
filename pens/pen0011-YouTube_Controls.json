@@ -1,0 +1,63 @@
+{
+  "title": "YouTube Controls",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "script",
+  "markup": {
+    "language": "pug",
+    "content": "// 1. The <iframe> (and video player) will replace this <div> tag.\niframe.video-embed-item(allow='fullscreen' allowfullscreen='' height='225' src='https://www.youtube-nocookie.com/embed/NKYPvcQ55oo?autohide=1&controls=1&enablejsapi=1' title='COSTA RICA IN 4K 60fps HDR (ULTRA HD)' width='400')\nbutton#go get status\nbutton#start Start\nbutton#pause Pause\nbutton#stop Stop"
+  },
+  "style": {
+    "language": "scss",
+    "content": ""
+  },
+  "script": {
+    "language": "javascript",
+    "content": "// https://developers.google.com/youtube/iframe_api_reference#Playback_status\n\nvar tag = document.createElement(\"script\");\n\ntag.src = \"https://www.youtube.com/iframe_api\";\nvar firstScriptTag = document.getElementsByTagName(\"script\")[0];\nfirstScriptTag.parentNode.insertBefore(tag, firstScriptTag);\n\nvar player;\nfunction onYouTubeIframeAPIReady() {\n  console.log(\"API ready\");\n  player = new YT.Player(document.getElementsByTagName(\"iframe\")[0]);\n}\n\ndocument.getElementById('go').addEventListener('click', function(){\n  console.log('get status');\n  console.log(player.getPlayerState());\n})\n\ndocument.getElementById('start').addEventListener('click', function(){\n\tconsole.log('start video');\n  player.playVideo()\n})\n\ndocument.getElementById('pause').addEventListener('click', function(){\n\tconsole.log('pause video');\n  player.pauseVideo()\n})\n\ndocument.getElementById('stop').addEventListener('click', function(){\n\tconsole.log('stop video');\n  player.stopVideo()\n})"
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}

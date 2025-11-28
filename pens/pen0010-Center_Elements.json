@@ -1,0 +1,63 @@
+{
+  "title": "Center Elements",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "pug",
+    "content": "mixin listitem\n\tli.c-on-page-menu__item\n\t\ta(href='#')\n\t\t\tspan Hier steht so zeug mit noch viel mehr text #{n++}\n\n- var n = 0;\n\ndiv\n\tul.c-on-page-menu\n\t\twhile n < 4\n\t\t\t+listitem #{n++}\n\t\t\t\n\ndiv\n\tul.c-on-page-menu\n\t\twhile n < 50\n\t\t\t+listitem #{n++}"
+  },
+  "style": {
+    "language": "scss",
+    "content": "$unordered-list-items-margin-bottom:  15px !default;\n$ku-blue: #232F66 !default;\n$main-nav-list__item--roadmap-font-color: #757575 !default;\n$white: #FFFFFF;\n\nbody {\n\tmargin: auto;\n\tmax-width: 1200px;\n}\n\ndiv {\n\tdisplay: flex;\n\tjustify-content: center;\n}\n\n.c-on-page-menu {\n    padding: 0;\n    list-style-type: none;\n\n    &__item {\n        position: relative;\n        padding-left: 20px;\n        padding-bottom: $unordered-list-items-margin-bottom;\n        margin-bottom: 0;\n\n        a {\n            text-decoration: none;\n\n            &:hover {\n                color: $ku-blue;\n            }\n        }\n\n        &::before {\n            position: absolute;\n            top: 4px;\n            left: 1px;\n            content: \" \";\n            display: block;\n            width: 16px;\n            height: 16px;\n            border-radius: 50%;\n            background-color: $main-nav-list__item--roadmap-font-color;\n            // border: 3px solid $white;\n            z-index: 10;\n            transition: background-color .3s;\n        }\n\n        &::after {\n            content: \" \";\n            position: absolute;\n            top: 22px;\n            left: 6px;\n            width: 1px;\n            height: calc(100% - 22px);\n            // border-left: 4px dotted $main-nav-list__item--roadmap-font-color;\n            z-index: 5;\n        }\n\n        &:last-child::after {\n            display: none;\n        }\n    }\n\n    @media (min-width: 768px) {\n        display: flex;\n        flex-wrap: wrap;\n\n        &__item {\n            overflow: hidden;\n            text-align: center;\n            hyphens: auto;\n            width: 140px;\n            padding: 20px 9px 0 9px;\n\t\t\t\t\t\tmargin: 0 2px 2rem;\n\n            &::before {\n                top: 0;\n                left: 50%;\n\t\t\t\t\t\t\t\ttransform: translatex(-50%);\n            }\n\n            &::after {\n                top: 6px;\n                left: 0;\n                width: calc(100% + 0.2rem);\n                height: 4px;\n                // border-top: 4px dotted $main-nav-list__item--roadmap-font-color;\n\t\t\t\t\t\t\t\tbackground-image: url(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5IiBoZWlnaHQ9IjQiPjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIyIiBmaWxsPSJyZWQiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==\");\n\t\t\t\t\t\t\tbackground-size: 9px 4px;\n\t\t\t\t\t\t\tbackground-position-y: 0;\n            }\n\n            &:first-child::after {\n                left: 50%;\n                width: calc(50% + 0.2rem);\n            }\n\n            &:last-child::after {\n                display: block;\n                left: 0;\n                width: calc(50% + 0.2rem);\n            }\n        }\n    }\n}"
+  },
+  "script": {
+    "language": "javascript",
+    "content": ""
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}

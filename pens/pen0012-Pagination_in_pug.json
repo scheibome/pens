@@ -1,0 +1,63 @@
+{
+  "title": "Pagination in pug",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "pug",
+    "content": "mixin paginationItem(count, isCurrent)\n\tif isCurrent\n\t\tli.c-pagination__item.c-pagination__item--current\n\t\t\ta.c-pagination__link.c-pagination__link--current(href='#') #{count}\n\telse\n\t\tli.c-pagination__item\n\t\t\ta.c-pagination__link(href='#') #{count}\n\nmixin paginationSkippAll(directionClass)\n\tli.c-pagination__item.c-pagination__item--skipall\n\t\t\ta.c-pagination__link(href='#')\n\t\t\t\tsvg.c-pagination__arrow.c-pagination__arrow--skipall(class=directionClass width='24' height='24' viewBox='0 0 24 24')\n\t\t\t\t\tuse(xlink:href='#c-paginationarrow__skippall')\n\t\t\t\t\t\nmixin paginationBesides(directionClass)\n\tli.c-pagination__item.c-pagination__item--besides\n\t\t\ta.c-pagination__link(href='#')\n\t\t\t\tsvg.c-pagination__arrow(class=directionClass width='24' height='24' viewBox='0 0 24 24')\n\t\t\t\t\tuse(xlink:href='#c-paginationarrow__arrow')\n\nmixin pagination(maxitems, currentPosition)\n\t-\n\t\tvar n = 1\n\t\tmaxitems = maxitems + 1\n\n\tsvg(style='display: none' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24')\n\t\ttitle c-paginationarrow\n\t\tpath#c-paginationarrow__skippall(d='M6 6h2.016v12H6V6zm12.422 10.594L17.016 18l-6-6 6-6 1.406 1.406L13.828 12z')\n\t\tpath#c-paginationarrow__arrow(d='M15.422 16.078l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z')\n\n\tul.c-pagination(role='menubar' aria-label='Pagination')\n\t\t+paginationSkippAll\n\t\t+paginationBesides\n\t\twhile n < maxitems\n\t\t\tif n === currentPosition\n\t\t\t\t+paginationItem(n, true)\n\t\t\telse\n\t\t\t\t+paginationItem(n)\n\t\t\t- n++\n\t\t+paginationBesides('c-pagination__arrow--right')\n\t\t+paginationSkippAll('c-pagination__arrow--right')\n\n+pagination(10, 2)"
+  },
+  "style": {
+    "language": "scss",
+    "content": "$color1: #A5C85A;\n$color2: #E0E0E0;\n\n.c-pagination {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  list-style-type: none;\n  padding: 0;\n\n  &__item {\n    position: absolute;\n    top: -9999px;\n    left: -9999px;\n\n    &:hover {\n\n      &:not([class*='c-pagination__item--current']) {\n        border-bottom: 2px solid $color2;\n      }\n    }\n\n    &--current {\n      border-bottom: 2px solid $color1;\n    }\n\n    &--besides,\n    &--current {\n      position: initial;\n      top: initial;\n      left: initial;\n    }\n  }\n\n  &__link {\n    display: block;\n    color: currentcolor;\n    text-decoration: none;\n    padding: 0.5rem 1rem;\n    line-height: 1.5rem;\n\n    &:hover {\n      text-decoration: none;\n    }\n\n    &:focus,\n    &:active {\n      box-shadow: 0 0 4px 2px rgba(0 0 0 / 5%);\n    }\n\n    .c-pagination__item--besides &,\n    .c-pagination__item--skipall & {\n      line-height: 0;\n    }\n  }\n\n  &__arrow {\n\n    &--right {\n      transform: rotate(180deg);\n    }\n  }\n\n  @media only screen and (min-width: 400px) {\n\n    &__item {\n\n      &--skipall {\n        position: initial;\n        top: initial;\n        left: initial;\n      }\n    }\n  }\n\n  @media only screen and (min-width: 768px) {\n\n    &__item {\n      position: initial;\n      top: initial;\n      left: initial;\n    }\n  }\n}\n"
+  },
+  "script": {
+    "language": "javascript",
+    "content": ""
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}
