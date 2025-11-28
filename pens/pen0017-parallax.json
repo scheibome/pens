@@ -1,0 +1,63 @@
+{
+  "title": "parallax",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "html",
+    "content": "<div class=\"parallax\">\n  <!--layer 1 will be the bottom layer, layer 3 will be the top layer-->\n\t<p>Lorem ipsum dolor sit amet. lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem! Lorem ipsum dolor sit amet. lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem! Lorem ipsum dolor sit amet. lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem!</p>\n  <div class=\"parallax-layer layer1\">LAYER 1</div>\n  <div class=\"parallax-layer layer2\">LAYER 2</div>\n  <div class=\"parallax-layer layer3\">LAYER 3</div>\n</div>"
+  },
+  "style": {
+    "language": "css",
+    "content": "/* if you do not remove the margin, you will see a vertical scrollbar on the .parallax div */\nbody {\n  margin: 0;\n}\n\n/* parallax \"viewport\" */\n.parallax {\n  height: 100vh;\n\n  overflow-x: hidden;\n  overflow-y: auto;\n\n  perspective: 1px;\n}\n\n.parallax-layer {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n}\n\n.layer1 {\n  transform: translateZ(0);\n}\n\n.layer2 {\n  transform: translateZ(-1px);\n}\n\n.layer3 {\n  transform: translateZ(-2px);\n}\n\n.parallax-layer.layer1 {\n  width: 100%;\n  height: 100rem;\n\n  background-color: red;\n}\n\n.parallax-layer.layer2 {\n  top: 10rem;\n\n  width: 100%;\n  height: 50rem;\n\n  background-color: green;\n}\n\n.parallax-layer.layer3 {\n  top: 20rem;\n\n  width: 100%;\n  height: 50rem;\n\n  background-color: blue;\n}\n\ndiv{\n  font-size: 50px;\n  text-align: center;\n}"
+  },
+  "script": {
+    "language": "javascript",
+    "content": "const box = document.getElementById(\"box\");\nlet x = 0;\n\nbox.addEventListener(\"mousedown\", function(e) {\n  let startX = e.clientX;\n\n  const mousemove = function(e) {\n    x = e.clientX - startX;\n    box.scrollLeft = box.scrollLeft - x;\n    startX = e.clientX;\n  }\n\n  document.addEventListener(\"mousemove\", mousemove);\n\n  box.addEventListener(\"mouseup\", function() {\n    document.removeEventListener(\"mousemove\", mousemove);\n  });\n\n  box.addEventListener(\"mouseleave\", function() {\n    document.removeEventListener(\"mousemove\", mousemove);\n  });\n})"
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "normalize.css",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Telos",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "style",
+  "markup": {
+    "language": "pug",
+    "content": ".container\n\th1 Telos\n\timg(src=\"https://placeholder.scheibitz.com/600x400/000000/dddddd?text=600x400%20-%20%283:2%29\")\n.container.container--row\n\t.container__column\n\t\th2 Management\n\t\tp\n\t\t\ta(href=\"#\") mail@mail.com\n\t.container__column\n\t\th2 Bookings\n\t\tp\n\t\t\ta(href=\"#\") mail@mail.com\n\t.container__column\n\t\th2 Press\n\t\tp\n\t\t\ta(href=\"#\") mail@mail.com\n.container\n\t.c-linklist\n\t\ta.c-linklist__link(href=\"#\") Facebook\n\t\ta.c-linklist__link(href=\"#\") Facebook\n\t\ta.c-linklist__link(href=\"#\") Facebook\n\t\ta.c-linklist__link(href=\"#\") Facebook"
+  },
+  "style": {
+    "language": "sass",
+    "content": "body\n\tfont-family: arial\n\n.container\n\tmargin: 2rem auto\n\tmax-width: 900px\n\ttext-align: center\n\n\t&--row\n\t\tdisplay: flex\n\t\tjustify-content: space-between\n\n\t&__column\n\t\twidth: calc(33.333% - 1rem)\n\n.c-linklist\n\tborder-top: 2px solid #ccc\n\tmargin: 5rem 0\n\tpadding: 2rem 0\n\n\t&__link\n\t\tdisplay: inline-block\n\t\tmargin: 0 1rem\n\t\nh1\n\tfont-size: 3rem\n\tfont-weight: bold\n\tmargin: 1em 2em\n\nh2\n\ttext-transform: uppercase\n\tfont-size: 1.5rem\n\tmargin: 1em 2em\n\na\n\tcolor: currentColor\n\ttext-decoration: none\n\t\t\n\t&:hover\n\t\ttext-decoration: underline"
+  },
+  "script": {
+    "language": "javascript",
+    "content": ""
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}
