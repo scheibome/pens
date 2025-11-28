@@ -1,0 +1,67 @@
+{
+  "title": "splidejs - Slider cards",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "autoupdate": true,
+  "autosave": false,
+  "autotest": false,
+  "delay": 1500,
+  "formatOnsave": false,
+  "view": "split",
+  "mode": "full",
+  "theme": "dark",
+  "layout": "responsive",
+  "recoverUnsaved": true,
+  "showSpacing": false,
+  "welcome": false,
+  "readonly": false,
+  "allowLangChange": true,
+  "activeEditor": "script",
+  "markup": {
+    "language": "pug",
+    "content": "mixin carousel-slider(data)\n\t// Start - carousel Slider\n\tsection.c-slider.c-slider--carousel.splide(data-slider=\"carousel\")\n\t\t.splide__track\n\t\t\tul.splide__list\n\t\t\t\teach slide in data\n\t\t\t\t\t// Start - Slider Item\n\t\t\t\t\tli.splide__slide.c-slider__slide\n\t\t\t\t\t\t// Start - Slider content\n\t\t\t\t\t\t.c-slider__slide-inner-carousel\n\t\t\t\t\t\t\timg(alt=\"alternative Text\" width=\"800\" height=\"800\" src=`https://picsum.photos/id/${slide.imageID}/800/800.webp`)\n\t\t\t\t\t\t// End - Slider content\n\t\t\t\t\t// End - Slider Item\n\t\t.c-slider__arrows.splide__arrows\n\t\t\tbutton.c-slider__arrow.c-slider__arrow--prev.splide__arrow.splide__arrow--prev\n\t\t\t\tsvg.c-slider__prev-icon(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24')\n\t\t\t\t\tpath(d='M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z')\n\t\t\tbutton.c-slider__arrow.c-slider__arrow--next.splide__arrow.splide__arrow--next\n\t\t\t\tsvg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24')\n\t\t\t\t\tpath(d='M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z')\n\t// End - carousel Slider\n\n.container\n\t+carousel-slider([\n\t\t{\n\t\t\timageID: 18,\n\t\t},\n\t\t{\n\t\t\timageID: 19,\n\t\t},\n\t\t{\n\t\t\timageID: 25,\n\t\t},\n\t\t{\n\t\t\timageID: 28,\n\t\t},\n\t\t{\n\t\t\timageID: 51,\n\t\t},\n\t])"
+  },
+  "style": {
+    "language": "scss",
+    "content": ":root {\n  --transition-default: 0.3s ease-in-out;\n  --slider-dot-size: 1rem;\n  --slider-carousel-lvl2-scale: scale(1.3);\n  --slider-carousel-lvl1-scale: scale(1.6);\n  --slider-carousel-height: 100cqi;\n  --neutral-color-base: #000000;\n  --neutral-color-inverted: #FFFFFF;\n  --primary-color: red;\n}\n\n.c-slider {\n\n  $this: &;\n\n  container-type: inline-size;\n\n  @media all and (min-width: 640px) {\n    --slider-carousel-height: 40cqi;\n  }\n\n  &__slide {\n    height: var(--slider-carousel-height);\n    display: flex;\n    align-items: center;\n\n    &.is-active {\n      z-index: 3;\n    }\n\n    &.is-prev,\n    &.is-next {\n      z-index: 2;\n    }\n\n    &.is-prev-prev,\n    &.is-next-next {\n      z-index: 1;\n    }\n  }\n\n  &__slide-inner-carousel {\n    background-color: var(--neutral-color-inverted);\n    transition: transform var(--transition-default), opacity var(--transition-default);\n    transform: scale(1);\n\n    > * {\n      #{$this}__slide.is-prev-prev &,\n      #{$this}__slide.is-next-next & {\n        opacity: 0.2;\n      }\n\n      #{$this}__slide.is-prev &,\n      #{$this}__slide.is-next & {\n        opacity: 0.7;\n      }\n\t\t\t\n\t\t\t#{$this}__slide:not(.is-active):not(.is-prev):not(.is-next) & {\n        opacity: 0.2;\n      }\n    }\n\n    #{$this}__slide.is-prev & {\n      transform: var(--slider-carousel-lvl2-scale);\n    }\n\n    #{$this}__slide.is-next & {\n      transform: var(--slider-carousel-lvl2-scale);\n    }\n\n    #{$this}__slide.is-active & {\n      transform: var(--slider-carousel-lvl1-scale);\n    }\n  }\n\n  &__arrows {\n    display: flex;\n    justify-content: center;\n  }\n\n  &__arrow {\n    line-height: 0;\n  }\n\n  &__prev-icon {\n    transform: rotate(180deg);\n  }\n}\n\n// Defaults\n\n*, *:before, *:after {\n  box-sizing: border-box;\n}\n\nimg, object, embed, video {\n  height: auto;\n  max-width: 100%;\n}\n\n.container {\n\tmax-inline-size: 1200px;\n\tmargin-inline: auto;\n}"
+  },
+  "script": {
+    "language": "typescript",
+    "content": "function removeClasses(sliderList) {\n\t[...sliderList].forEach(function(slide) {\n\t\tslide.classList.remove('is-prev-prev', 'is-prev', 'is-active', 'is-next', 'is-next-next');\n\t});\n}\n\nfunction getSlides(carouselSlider) {\n\treturn {\n\t\tprevPrev: carouselSlider.Components.Slides.getAt(carouselSlider.index - 2).slide,\n\t\tnextNext: carouselSlider.Components.Slides.getAt(carouselSlider.index + 2).slide,\n\t};\n}\n\nconst carouselSlider = new Splide('[data-slider=\"carousel\"]', {\n\tarrows: true,\n\tpagination: false,\n\ttype: 'loop',\n\tautoplay: false,\n\tperPage: 5,\n\tfocus: 'center',\n\tisNavigation: true,\n\tupdateOnMove: true,\n\tbreakpoints: {\n\t\t640: {\n\t\t\tperPage: 2,\n\t\t},\n\t}\n});\n\ncarouselSlider.on( 'mounted', function () {\n\tconst prevPrevSlide = getSlides(carouselSlider).prevPrev;\n\tconst nextNextSlide = getSlides(carouselSlider).nextNext;\n\tprevPrevSlide.classList.add('is-prev-prev');\n\tnextNextSlide.classList.add('is-next-next');\n} );\n\ncarouselSlider.on( 'move', function () {\n\tconst prevPrevSlide = getSlides(carouselSlider).prevPrev;\n\tconst nextNextSlide = getSlides(carouselSlider).nextNext;\n\n\tremoveClasses(carouselSlider.Components.Elements.list.children);\n\n\tprevPrevSlide.classList.add('is-prev-prev');\n\tnextNextSlide.classList.add('is-next-next');\n} );\n\ncarouselSlider.mount();https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css"
+  },
+  "stylesheets": [
+    "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css"
+  ],
+  "scripts": [
+    "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
+  ],
+  "cssPreset": "",
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "tools": {
+    "enabled": "all",
+    "active": "console",
+    "status": "closed"
+  },
+  "zoom": 1,
+  "processors": [],
+  "customSettings": {},
+  "useTabs": false,
+  "tabSize": 2,
+  "lineNumbers": true,
+  "wordWrap": false,
+  "closeBrackets": true,
+  "foldRegions": false,
+  "semicolons": true,
+  "singleQuote": false,
+  "trailingComma": true,
+  "emmet": true,
+  "enableAI": false,
+  "version": "47"
+}
